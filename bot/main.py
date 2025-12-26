@@ -29,7 +29,7 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start(message: types.Message):
-    await message.answer("📸 **Кидай фото гриба!**\nЯ определю его вид и съедобность.")
+    await message.answer("📸 **Отправь мне фото гриба!**\nА я определю его вид и съедобность.")
 
 @dp.message(F.photo)
 async def handle_photo(message: types.Message):
@@ -37,24 +37,16 @@ async def handle_photo(message: types.Message):
     status_msg = await message.answer("**Обрабатываю...**")
     
     try:
-        # 1. Создаем буфер в памяти (виртуальный файл)
         buffer = io.BytesIO()
-        
-        # 2. Скачиваем фото прямо в буфер
         photo = message.photo[-1]
         file = await bot.get_file(photo.file_id)
         await bot.download_file(file.file_path, destination=buffer)
-        
-        # Важно! Перематываем буфер в начало, чтобы PIL мог его прочитать
         buffer.seek(0)
-        
-        # 3. Предсказываем (передаем буфер вместо пути к файлу)
+
         class_name, prob = predictor.predict(buffer)
         confidence = prob * 100
         
-        await status_msg.edit_text(f"🍄 Это **{class_name}** ({confidence:.1f}%)\n⏳ Генерирую описание...")
-        
-        # 4. LLM
+        await status_msg.edit_text(f"🍄‍🟫 Это **{class_name}** ({confidence:.1f}%)\n⏳ Генерирую описание...")
         desc = await get_mushroom_info(class_name, confidence)
         
         await status_msg.edit_text(
@@ -65,10 +57,10 @@ async def handle_photo(message: types.Message):
 
     except Exception as e:
         logging.error(f"Ошибка: {e}")
-        await status_msg.edit_text("❌ Не удалось обработать фото.")
+        await status_msg.edit_text("Не удалось обработать фото.")
 
 async def main():
-    print("🚀 Бот запущен (Режим: In-Memory)")
+    print("Бот запущен")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
