@@ -47,7 +47,7 @@ async def get_mushroom_info(mushroom_name: str, confidence: float) -> str:
             timeout=20.0 
         )
         
-        print("✅ Ответ от LLM получен!")
+        print(" Ответ от LLM получен!")
         return response.choices[0].message.content
         
     except Exception as e:
