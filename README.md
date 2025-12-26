@@ -54,7 +54,7 @@
 ### 1. Клонируйте репозиторий
 ```
 git clone https://github.com/Arturchik2004/ai-mushroom-telegram-bot.git
-cd mushroom-telegram-bot
+cd ai-mushroom-telegram-bot
 ```
 ### 2. Создайте виртуальное окружение
 
@@ -78,4 +78,5 @@ LLM_MODEL=mistralai/mistral-7b-instruct:free
 ```
 python bot/main.py
 ```
+
 
