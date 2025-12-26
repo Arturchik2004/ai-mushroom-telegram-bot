@@ -23,7 +23,7 @@
 ├──  [notebooks](https://github.com/Arturchik2004/ai-mushroom-telegram-bot/tree/main/notebooks)  
 │   └──  [train_model.ipynb](https://github.com/Arturchik2004/ai-mushroom-telegram-bot/blob/main/notebooks/train_model.ipynb) - *Блокнот с обучением*  
 ├──  [requirements.txt](https://github.com/Arturchik2004/ai-mushroom-telegram-bot/blob/main/requirements.txt)  
-└──  [.env](https://github.com/Arturchik2004/ai-mushroom-telegram-bot/blob/main/.env)  - *здесь хранятся ключи от Openrouter, токен бота и наименование используемой LLM* 
+└──  .env  - *здесь хранятся ключи от Openrouter, токен бота и наименование используемой LLM* 
 -------------------
 
 # Описание проекта
@@ -78,5 +78,6 @@ LLM_MODEL=mistralai/mistral-7b-instruct:free
 ```
 python bot/main.py
 ```
+
 
 
